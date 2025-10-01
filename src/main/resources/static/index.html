@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Automotivo</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+
+<div id="login-view" class="view-container">
+    <form id="login-form" class="auth-form">
+        <h2>🚗 Acessar Sistema</h2>
+        <input type="text" id="login-username" placeholder="Usuário (admin ou user)" required>
+        <input type="password" id="login-password" placeholder="Senha (1234)" required>
+        <button type="submit">Entrar</button>
+        <p id="login-error" class="error-message"></p>
+        <p class="switch-form">Não tem uma conta? <a href="#" id="show-register">Registre-se</a></p>
+    </form>
+</div>
+
+<div id="register-view" class="view-container hidden">
+    <form id="register-form" class="auth-form">
+        <h2>🛠️ Criar Conta</h2>
+        <input type="text" id="register-username" placeholder="Novo nome de usuário" required>
+        <input type="tel" id="register-telefone" placeholder="Seu telefone" required>
+        <input type="password" id="register-password" placeholder="Nova senha" required>
+        <button type="submit">Registrar</button>
+        <p id="register-error" class="error-message"></p>
+        <p class="switch-form">Já tem uma conta? <a href="#" id="show-login">Fazer Login</a></p>
+    </form>
+</div>
+
+<div id="app-view" class="hidden">
+    <header>
+        <h1>Sistema de Gestão de Veículos</h1>
+        <div class="user-info">
+            <span id="user-greeting"></span>
+            <button id="btn-logout" class="btn-logout">Sair</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="toolbar">
+            <div class="filters">
+                <select id="filter-marca" class="filter-item"><option value="">Todas as Marcas</option></select>
+                <select id="filter-modelo" class="filter-item"><option value="">Todos os Modelos</option></select>
+                <input type="number" id="filter-ano" placeholder="Ano Exato" class="filter-item">
+                <input type="number" id="filter-preco" placeholder="Preço Máximo" class="filter-item">
+                <button id="btn-filter" class="btn-primary">Filtrar</button>
+            </div>
+            <div class="admin-buttons">
+                <button id="btn-manage-catalog" class="manage-button">Gerenciar Catálogo</button>
+                <button id="btn-add-veiculo" class="add-button">Adicionar Veículo</button>
+            </div>
+        </div>
+        <div id="vehicle-list" class="grid-container"></div>
+    </main>
+
+    <div id="vehicle-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h2 id="modal-title">Adicionar Veículo</h2>
+            <form id="vehicle-form">
+                <input type="hidden" id="veiculo-id">
+                <div class="form-group"><label for="form-marca">Marca:</label><select id="form-marca" required></select></div>
+                <div class="form-group"><label for="form-modelo">Modelo:</label><select id="form-modelo" required></select></div>
+                <div class="form-group"><label for="form-ano">Ano:</label><input type="number" id="form-ano" required></div>
+                <div class="form-group"><label for="form-preco">Preço (R$):</label><input type="number" step="0.01" id="form-preco" required></div>
+                <div class="form-group"><label for="form-km">KM:</label><input type="number" id="form-km" required></div>
+                <div class="form-group"><label for="form-cor">Cor:</label><input type="text" id="form-cor" required></div>
+                <div class="form-group"><label for="form-url-capa">URL da Imagem:</label><input type="url" id="form-url-capa" required></div>
+                <div class="form-group-checkbox"><label for="form-disponivel">Disponível?</label><input type="checkbox" id="form-disponivel" checked></div>
+                <div class="modal-actions">
+                    <button type="button" id="btn-cancel" class="btn-secondary">Cancelar</button>
+                    <button type="submit" class="btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="catalog-modal" class="modal-overlay hidden">
+        <div class="modal-content large">
+            <h2>Gerenciar Catálogo</h2>
+            <div class="catalog-manager">
+                <div class="catalog-section">
+                    <h3>Marcas</h3>
+                    <form id="marca-form" class="catalog-form"><input type="text" id="marca-nome" placeholder="Nome da nova marca" required><button type="submit">Adicionar</button></form>
+                    <ul id="marca-list" class="catalog-list"></ul>
+                </div>
+                <div class="catalog-section">
+                    <h3>Modelos</h3>
+                    <form id="modelo-form" class="catalog-form">
+                        <select id="modelo-marca-select" required><option value="">Selecione a Marca</option></select>
+                        <input type="text" id="modelo-nome" placeholder="Nome do novo modelo" required>
+                        <button type="submit">Adicionar</button>
+                    </form>
+                    <ul id="modelo-list" class="catalog-list"></ul>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button type="button" id="btn-close-catalog-modal" class="btn-secondary">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <footer><p>Sistema Automotivo - Projeto Final</p></footer>
+</div>
+</body>
+</html>
